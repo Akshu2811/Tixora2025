@@ -1,7 +1,6 @@
 package dev.springfirst.tixora2025.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalTime;
 
@@ -13,7 +12,11 @@ public class Payment {
     private LocalTime paymentTime;
     private double amount;
     private String referenceNumber;
+    @Enumerated(EnumType.STRING)
     private PaymentMode paymentMode;
+    @ManyToOne
+    @JoinColumn(name = "booking_id")
     private Booking booking;
+    @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
 }
