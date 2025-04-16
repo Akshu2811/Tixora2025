@@ -1,9 +1,14 @@
 package dev.springfirst.tixora2025.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
 import java.time.LocalTime;
 
+@Entity
 public class Payment {
 
+    @Id
     private int id;
     private LocalTime paymentTime;
     private double amount;
