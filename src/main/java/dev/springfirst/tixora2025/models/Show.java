@@ -1,26 +1,74 @@
 package dev.springfirst.tixora2025.models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
-@Entity
-public class Show {
+@Getter
+@Setter
+@Entity(name = "shows")
+public class Show extends BaseModel{
 
-    @Id
-    private int id;
+
     @ManyToOne
-    @JoinColumn(name = "movie_id")
     private Movie movie;
     private int time;
     @ManyToOne
-    @JoinColumn(name = "screen_id")
     private Screen screen;
     @ManyToOne
-    @JoinColumn(name = "theatre_id")
     private Theatre theatre;
-    @OneToMany(mappedBy = "show", cascade = CascadeType.ALL)
+    @OneToMany
     private List<ShowSeat> showSeats;
-    @OneToMany(mappedBy = "show", cascade = CascadeType.ALL)
+    @OneToMany
     private List<ShowSeatType> showSeatTypes;
+
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
+
+    public Screen getScreen() {
+        return screen;
+    }
+
+    public void setScreen(Screen screen) {
+        this.screen = screen;
+    }
+
+    public Theatre getTheatre() {
+        return theatre;
+    }
+
+    public void setTheatre(Theatre theatre) {
+        this.theatre = theatre;
+    }
+
+    public List<ShowSeat> getShowSeats() {
+        return showSeats;
+    }
+
+    public void setShowSeats(List<ShowSeat> showSeats) {
+        this.showSeats = showSeats;
+    }
+
+    public List<ShowSeatType> getShowSeatTypes() {
+        return showSeatTypes;
+    }
+
+    public void setShowSeatTypes(List<ShowSeatType> showSeatTypes) {
+        this.showSeatTypes = showSeatTypes;
+    }
 }

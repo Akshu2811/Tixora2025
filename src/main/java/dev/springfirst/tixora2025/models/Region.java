@@ -4,15 +4,34 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
-public class Region {
+public class Region extends BaseModel {
 
-    @Id
-    private int id;
+
     private String name;
-    @OneToMany(mappedBy = "region", cascade = CascadeType.ALL)
+    @OneToMany
     private List<Theatre> theatres;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Theatre> getTheatres() {
+        return theatres;
+    }
+
+    public void setTheatres(List<Theatre> theatres) {
+        this.theatres = theatres;
+    }
 }

@@ -1,19 +1,53 @@
 package dev.springfirst.tixora2025.models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
-public class Theatre {
+public class Theatre extends BaseModel {
 
-    @Id
-    private int id;
+
     private String name;
     private String address;
-    @OneToMany(mappedBy = "theatre", cascade = CascadeType.ALL)
+    @OneToMany
     private List<Screen> screens;
     @ManyToOne
-    @JoinColumn(name = "region_id")
     private Region region;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public List<Screen> getScreens() {
+        return screens;
+    }
+
+    public void setScreens(List<Screen> screens) {
+        this.screens = screens;
+    }
+
+    public Region getRegion() {
+        return region;
+    }
+
+    public void setRegion(Region region) {
+        this.region = region;
+    }
 }

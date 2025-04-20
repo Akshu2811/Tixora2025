@@ -1,19 +1,44 @@
 package dev.springfirst.tixora2025.models;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
-public class Screen {
+public class Screen extends BaseModel{
 
-    @Id
-    private int id;
+
     private String name;
-    @OneToMany(mappedBy = "screen", cascade = CascadeType.ALL)
+    @ManyToOne
+    private Theatre theatre;
+    @OneToMany
     private List<Seat> seats;
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Theatre getTheatre() {
+        return theatre;
+    }
+
+    public void setTheatre(Theatre theatre) {
+        this.theatre = theatre;
+    }
+
+    public List<Seat> getSeats() {
+        return seats;
+    }
+
+    public void setSeats(List<Seat> seats) {
+        this.seats = seats;
+    }
 }
